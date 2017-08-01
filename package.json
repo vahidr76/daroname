@@ -1,0 +1,22 @@
+{
+  "name": "Daroname",
+  "version": "1.0.0",
+  "description": "A simple demo MVC API build with Node.js, Express.js, and MongoDB. this system help people to know more about drugs and ills ",
+  "keywords": [
+    "mvc",
+    "simple",
+    "express",
+    "api"
+  ],
+  "license": "MIT",
+  "author": "Vahid Rahimi",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.5"
+  }
+}
