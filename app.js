@@ -1,4 +1,5 @@
-var express     = require("express")();
+var e           = require("express");
+var express     = e();
 var mongoose    = require("mongoose");
 var database    = require("./config/database");
 var server      = require("./config/server.js");
@@ -22,7 +23,7 @@ express.use(bodyParser.json());
 express.use(bodyParser.urlencoded({ extended: false }));
 // send all request in /api to route controller
 express.use("/api" , routes);
-express.use(express.static('public'));
+express.use(e.static('public'));
 
 
 // configuration for server run
