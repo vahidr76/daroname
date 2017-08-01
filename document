@@ -1,0 +1,53 @@
+
+github : https://github.com/vahidr76/daroname
+defaultHost : localhost:1376
+
+Note   : in server defaultHost has <serverIp>:<port>
+
+express.post("/insert", controller.insert);
+express.post("/update", controller.update);
+
+Note   : this route get some charachter and suggest post know need
+Route  : /api/suggest/:name
+Sample : 
+	/api/suggest/NAME
+	/api/suggest/MYNAME
+
+Note   : this route search post with title's of post
+Route  :/api/search/:name/page/:page
+Sample :
+	/api/search/NAME/page/1
+	/api/search/MYNAME/page/1
+
+Note   : this route get post.id and return post
+Route  : /api/post/:id
+Sample :
+	/api/post/3242342342353
+	/api/post/656
+
+Note   : this route for insert new post
+Route  : /api/insert/
+Request: {
+	title   : String,
+    body    : String,
+    image   : String,
+    type    : Number,
+    relation: []
+}
+Sample : 
+	post data :
+	title=myTitle&body=myBody&image=MyImage.jpg&type=1&relation=12,123,23423
+
+Note   : this route for update exists post in database
+Route  : /api/update
+Request: {
+	id		: String,
+	title   : String,
+    body    : String,
+    image   : String,
+    type    : Number,
+    relation: []
+}
+Sample : 
+	post data :
+	id=324234&title=myTitle&body=myBody&image=MyImage.jpg&type=1&relation=12,123,23423
