@@ -2,10 +2,7 @@
 github : https://github.com/vahidr76/daroname
 defaultHost : localhost:1376
 
-Note   : in server defaultHost has <serverIp>:<port>
-
-express.post("/insert", controller.insert);
-express.post("/update", controller.update);
+Note   : in server defaultHost is <serverIp>:<port>
 
 Note   : this route get some charachter and suggest post know need
 Route  : /api/suggest/:name
