@@ -2,7 +2,13 @@
 github : https://github.com/vahidr76/daroname
 defaultHost : localhost:1376
 
-Note   : in server defaultHost is <serverIp>:<port>
+Note   : in server defaultHost has <serverIp>:<port>
+
+Note   : this route for get all post with pagination
+Route  : /api/posts/:page
+Sample :
+    /api/posts/1
+    /api/posts/2
 
 Note   : this route get some charachter and suggest post know need
 Route  : /api/suggest/:name
