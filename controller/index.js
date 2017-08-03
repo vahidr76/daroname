@@ -9,6 +9,7 @@ var controller = {
     insert      : post.insertPost,
     update      : post.updatePost,
     suggest     : post.suggestPost,
+    posts       : post.posts,
     post        : post.getPost
 };
 
