@@ -5,16 +5,14 @@ var model = require("../model");
 
 var postController = {
 
-    searchPost : function(req, res){
+    posts      : function(req, res){
 
-        model.post.find({title : new RegExp(req.params.name, 'i') }).skip((Number(req.params.page)-1)*10).limit(10).then(function (post) {
+        model.post.find().skip((Number(req.params.page)-1)*10).limit(10).then(function (post) {
 
             var count = 0;
             var jobQueries = [];
 
             for (var i = 0; i < post.length; i++) {
-
-                console.log(post[i].relation);
 
                 jobQueries.push(model.post.find({ _id : {$in : post[i].relation}}, { title : 1}).then(function (data) {
 
@@ -28,7 +26,34 @@ var postController = {
             return Promise.all(jobQueries);
 
         }).then(function(d){
-            console.log(d);
+
+            res.json({"status" : "success", "data" : d[0]});
+        }).catch(function(error){
+            res.status(501).json({"status" : "fail"});
+        })
+
+    },
+    searchPost : function(req, res){
+
+        model.post.find({title : new RegExp(req.params.name, 'i') }).skip((Number(req.params.page)-1)*10).limit(10).then(function (post) {
+
+            var count = 0;
+            var jobQueries = [];
+
+            for (var i = 0; i < post.length; i++) {
+
+                jobQueries.push(model.post.find({ _id : {$in : post[i].relation}}, { title : 1}).then(function (data) {
+
+                    post[count++].relation = data;
+                    return post;
+
+                }));
+
+            }
+
+            return Promise.all(jobQueries);
+
+        }).then(function(d){
             res.json({"status" : "success", "data" : d[0]});
         }).catch(function(error){
             res.status(501).json({"status" : "fail"});
