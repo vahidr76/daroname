@@ -54,3 +54,8 @@ Request: {
 Sample : 
 	post data :
 	id=324234&title=myTitle&body=myBody&image=MyImage.jpg&type=1&relation=12,123,23423
+
+Note   : for delete post By _id
+Route  : /api/post/del/:id
+Sample :
+    /api/post/del/3242342434

@@ -141,6 +141,19 @@ var postController = {
             res.json({"status" : "success", "data" : post});
         })
 
+    },
+
+    deleteByid : function(req, res){
+
+        model.post.findByIdAndRemove(req.params.id).exec(function(err, post){
+
+            if(err != null)
+                res.status(501).json({"status" : "fail"});
+
+            res.json({"status" : "success"})
+
+        })
+
     }
 };
 

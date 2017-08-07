@@ -10,7 +10,8 @@ var controller = {
     update      : post.updatePost,
     suggest     : post.suggestPost,
     posts       : post.posts,
-    post        : post.getPost
+    post        : post.getPost,
+    postDel     : post.deleteByid
 };
 
 module.exports = controller;
