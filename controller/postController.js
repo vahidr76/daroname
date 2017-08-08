@@ -81,7 +81,13 @@ var postController = {
 
             for (var i = 0; i < post.length; i++) {
 
-                jobQueries.push(model.post.find({ _id : {$in : post[i].relation}}, { title : 1}).then(function (data) {
+                var ids = [];
+                for(var q=0; q<post[i].relation.length; q++){
+                    if(model.mon.Types.ObjectId.isValid(post[i].relation[q]))
+                        ids.push(post[i].relation[q]);
+                }
+
+                jobQueries.push(model.post.find({ _id : {$in : ids}}, { title : 1}).then(function (data) {
 
                     post[count++].relation = data;
                     return post;
@@ -89,6 +95,9 @@ var postController = {
                 }));
 
             }
+
+
+
 
             return Promise.all(jobQueries);
 
