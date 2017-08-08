@@ -14,19 +14,30 @@ var postController = {
 
             for (var i = 0; i < post.length; i++) {
 
-                jobQueries.push(model.post.find({ _id : {$in : post[i].relation}}, { title : 1}).then(function (data) {
+                var ids = [];
+                for(var q=0; q<post[i].relation.length; q++){
+                    if(model.mon.Types.ObjectId.isValid(post[i].relation[q]))
+                        ids.push(post[i].relation[q]);
+                }
 
-                    post[count++].relation = data;
-                    return post;
+                (function(ids, c){
 
-                }));
+                    jobQueries.push(model.post.find({ _id : {$in :ids}}, { title : 1}).then(function(data) {
+
+                        post[c].relation = data;
+                        return post;
+
+                    }));
+
+                }).bind(this, ids, i).call();
+
+
 
             }
 
             return Promise.all(jobQueries);
 
         }).then(function(d){
-
             res.json({"status" : "success", "data" : d[0]});
         }).catch(function(error){
             res.status(501).json({"status" : "fail"});
