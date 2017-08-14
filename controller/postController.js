@@ -159,7 +159,7 @@ var postController = {
 
     suggestPost : function(req, res){
 
-        model.post.find({title : new RegExp(req.params.name, 'i') }, {title : 1}).limit(4).exec(function(err, post){
+        model.post.find({title : new RegExp(req.params.name, 'i') }, {title : 1, image : 1}).limit(4).exec(function(err, post){
 
             if(err != null)
                 res.status(501).json({"status" : "fail"});
